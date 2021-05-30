@@ -5,4 +5,4 @@ WORKDIR /src/app
 
 RUN npm install
 
-CMD ["npm", "run", "serve:development"]
+CMD ["node", "--experimental-specifier-resolution=node", "src/main.js"]

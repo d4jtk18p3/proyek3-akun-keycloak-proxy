@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: akun-keycloak-proxy
+  namespace: proyek3
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: akun-keycloak-proxy
