@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akun-keycloak-proxy
+  namespace: proyek3
+spec:
+  selector:
+    matchLabels:
+      app: akun-keycloak-proxy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: akun-keycloak-proxy
+    spec:
+      containers:
+      - name: akun-keycloak-proxy
+        image: registry.6766998f.nip.io/akun-keycloak-proxy
+        imagePullPolicy: Always
+        env:
+        - name: PORT
+          value: "8080"
+        ports:
+        - containerPort: 8080
