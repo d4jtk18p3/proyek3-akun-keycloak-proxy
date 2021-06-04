@@ -1,5 +1,7 @@
-import server from './server'
+import server from './server.js'
 
-server.listen(process.env.PORT, () =>
-  console.log(`Server app listening on port ${process.env.PORT}!`)
+const PORT = process.env.PORT || 14416
+
+server.listen(PORT, () =>
+  console.log(`Server app listening on port ${PORT}!`)
 )
