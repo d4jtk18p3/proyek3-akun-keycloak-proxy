@@ -1,8 +1,8 @@
-FROM node:15-alpine3.13
+FROM node:16-alpine3.13
 
 COPY . /src/app
 WORKDIR /src/app
 
-RUN npm install
+RUN npm install --only=production
 
-CMD ["node", "--experimental-specifier-resolution=node", "src/main.js"]
+CMD ["node", "src/main.js"]
