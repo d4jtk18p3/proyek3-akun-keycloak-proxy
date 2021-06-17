@@ -18,7 +18,7 @@ const { parse: parseHTML } = htmlParser
 const JWT_SECRET = process.env.JWT_SECRET || 'development-secret'
 const KEYCLOAK_BASE_URL = process.env.KEYCLOAK_BASE_URL || 'http://localhost:14417/'
 const KEYCLOAK_LOGIN_PATTERN = process.env.KEYCLOAK_LOGIN_PATTERN || '^/auth/realms/development/.+/auth.*'
-const KEYCLOAK_LOGIN_URL = process.env.KEYCLOAK_LOGIN_URL || 'http://akun.localhost:5000/masuk'
+const KEYCLOAK_LOGIN_URL = process.env.KEYCLOAK_LOGIN_URL || 'http://akun.localhost:5000/login'
 const REDIS_HOSTNAME = process.env.REDIS_HOSTNAME || 'redis.proyek3'
 const SESSION_PREFIX = process.env.SESSION_PREFIX || 'akun-keycloak-proxy_session'
 
@@ -101,6 +101,8 @@ app.use(httpProxy.createProxyMiddleware({
     })
 }))
 
+const renderLoginPage = pug.compileFile('resources/pug/login.pug')
+
 const handleLoginRequest = (req, res) => {
   req.login = {
     locationHref: req.body.locationHref
@@ -153,7 +155,5 @@ const handleLoginResponse = async (responseBuffer, proxyRes, req, res) => {
 
   return responseBuffer
 }
-
-const renderLoginPage = pug.compileFile('resources/pug/login.pug')
 
 export default app
