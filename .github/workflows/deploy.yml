@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Create ssh tunnel
         run: |
-          sudo sshpass -p '@JTKPolban2021' ssh -o StrictHostKeyChecking=no -L 8022:192.168.34.210:80 -L 443:192.168.34.210:443 -L 22:192.168.34.210:80 joe@103.209.131.3 -p 8022
+          sudo sshpass -p '@JTKPolban2021' ssh -o StrictHostKeyChecking=no -L 8022:192.168.34.210:80 -L 443:192.168.34.210:443 -L 22:192.168.34.210:80 joe@103.209.131.3 -p 8022 &
       - name: Check for connection
         run: |
           telnet container-registry.7f000001.nip.io 8022
