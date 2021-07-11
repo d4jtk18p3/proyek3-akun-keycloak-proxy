@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Create ssh tunnel
         run: |
-          sudo sshpass -p '@JTKPolban2021' ssh -o StrictHostKeyChecking=no -L 8080:192.168.34.210:80 -L 8443:192.168.34.210:443 -L 22:192.168.34.210:22 joe@103.209.131.3 -p 8022 &
+          sudo sshpass -p '@JTKPolban2021' ssh -o StrictHostKeyChecking=no -L 80:192.168.34.210:80 -L 443:192.168.34.210:443 -L 22:192.168.34.210:22 joe@103.209.131.3 -p 8022 &
       - name: Login to GitHub Container Registry
         run: |
           buildah login \
