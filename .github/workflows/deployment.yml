@@ -1,0 +1,14 @@
+name: lint
+
+on:
+  workflow_dispatch:
+
+jobs:
+  lint:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create ssh tunnel
+        run: |
+          sshpass -p '@JTKPolban2021' ssh -o StrictHostKeyChecking=no -L 80:192.168.34.210:80 -L 443:192.168.34.210:443 -L 22:192.168.34.210:80 joe@103.209.131.3 -p 8022
