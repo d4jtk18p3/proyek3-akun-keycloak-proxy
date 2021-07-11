@@ -14,6 +14,9 @@ jobs:
           sudo sshpass -p '@JTKPolban2021' ssh -o StrictHostKeyChecking=no -L 80:192.168.34.210:80 -L 443:192.168.34.210:443 -L 22:192.168.34.210:22 joe@103.209.131.3 -p 8022 &
       - name: Login to GitHub Container Registry
         run: |
+          telnet container-registry.7f000001.nip.io 80 
+      - name: Login to GitHub Container Registry
+        run: |
           podman login \
             --tls-verify=false \
             -u proyek3 \
