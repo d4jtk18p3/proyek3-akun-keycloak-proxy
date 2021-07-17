@@ -12,15 +12,18 @@ import { URL } from 'url'
 import { v4 as uuidv4 } from 'uuid'
 import qs from 'qs'
 
+import {
+  JWT_SECRET,
+  KEYCLOAK_BASE_URL,
+  KEYCLOAK_LOGIN_PATTERN,
+  KEYCLOAK_LOGIN_URL,
+  REDIS_HOSTNAME,
+  SESSION_PREFIX
+} from './config.js'
+
 const { omit, trim } = _
 const { parse: parseHTML } = htmlParser
 
-const JWT_SECRET = process.env.JWT_SECRET || 'development-secret'
-const KEYCLOAK_BASE_URL = process.env.KEYCLOAK_BASE_URL || 'http://localhost:14417/'
-const KEYCLOAK_LOGIN_PATTERN = process.env.KEYCLOAK_LOGIN_PATTERN || '^/auth/realms/development/.+/auth.*'
-const KEYCLOAK_LOGIN_URL = process.env.KEYCLOAK_LOGIN_URL || 'http://akun.localhost:5000/login'
-const REDIS_HOSTNAME = process.env.REDIS_HOSTNAME || 'redis.proyek3'
-const SESSION_PREFIX = process.env.SESSION_PREFIX || 'akun-keycloak-proxy_session'
 
 const app = express()
 
@@ -39,8 +42,7 @@ if (process.env.NODE_ENV === 'production') {
     name: `${SESSION_PREFIX}`,
     saveUninitialized: false,
     secret: uuidv4(),
-    resave: false,
-    cookie: { secure: true }
+    resave: false
   }))
 } else {
   app.use(cors({
